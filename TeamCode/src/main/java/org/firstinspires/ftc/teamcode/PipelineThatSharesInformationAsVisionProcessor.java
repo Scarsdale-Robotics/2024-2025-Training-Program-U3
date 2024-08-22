@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PipelineThatSharesInformationAsVisionProcessor implements VisionProcessor {
+public class PipelineThatSharesInformationAsVisionProcessor /* DIFFERENCE START */ implements VisionProcessor /* DIFFERENCE END */ {
 
     // based off https://scarsdale-robotics.gitbook.io/the-wiki/programming/opencv-tutorial-and-resources/7.-contour-detection
     public Scalar upper = new Scalar(17, 255, 255);
@@ -38,7 +38,7 @@ public class PipelineThatSharesInformationAsVisionProcessor implements VisionPro
 
 
     @Override
-    public Mat processFrame(Mat input, long captureTimeNanos) {
+    public Mat processFrame(Mat input, /* DIFFERENCE START */ long captureTimeNanos /* DIFFERENCE END */) {
         Imgproc.cvtColor(input, result, Imgproc.COLOR_RGB2HSV);
         Core.inRange(result, lower, upper, result);
 
@@ -116,6 +116,7 @@ public class PipelineThatSharesInformationAsVisionProcessor implements VisionPro
         return largestContourBoundingBoxCenter;
     }
 
+    /* DIFFERENCE START */
     @Override
     public void init(int width, int height, CameraCalibration calibration) {
         // ignore for now
@@ -125,4 +126,6 @@ public class PipelineThatSharesInformationAsVisionProcessor implements VisionPro
     public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
         // ignore for now
     }
+    /* DIFFERENCE END */
+
 }
