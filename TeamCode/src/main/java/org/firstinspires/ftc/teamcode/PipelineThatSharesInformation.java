@@ -103,6 +103,7 @@ public class PipelineThatSharesInformation extends OpenCvPipeline {
         return largestContour;
     }
 
+    // other code (such as OpModes) can now call the following methods to obtain realtime about the frame!
     public int getDetectedPixels() {
         return detectedPixels;
     }
