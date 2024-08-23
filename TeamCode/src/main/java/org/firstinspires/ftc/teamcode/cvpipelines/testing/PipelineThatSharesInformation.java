@@ -1,9 +1,5 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.cvpipelines.testing;
 
-import android.graphics.Canvas;
-
-import org.firstinspires.ftc.robotcore.internal.camera.calibration.CameraCalibration;
-import org.firstinspires.ftc.vision.VisionProcessor;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
@@ -18,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PipelineThatSharesInformationAsVisionProcessor /* DIFFERENCE START */ implements VisionProcessor /* DIFFERENCE END */ {
+public class PipelineThatSharesInformation extends OpenCvPipeline {
 
     // based off https://scarsdale-robotics.gitbook.io/the-wiki/programming/opencv-tutorial-and-resources/7.-contour-detection
     public Scalar upper = new Scalar(17, 255, 255);
@@ -38,7 +34,7 @@ public class PipelineThatSharesInformationAsVisionProcessor /* DIFFERENCE START 
 
 
     @Override
-    public Mat processFrame(Mat input, /* DIFFERENCE START */ long captureTimeNanos /* DIFFERENCE END */) {
+    public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, result, Imgproc.COLOR_RGB2HSV);
         Core.inRange(result, lower, upper, result);
 
@@ -115,17 +111,5 @@ public class PipelineThatSharesInformationAsVisionProcessor /* DIFFERENCE START 
     public Point getLargestContourBoundingBoxCenter() {
         return largestContourBoundingBoxCenter;
     }
-
-    /* DIFFERENCE START */
-    @Override
-    public void init(int width, int height, CameraCalibration calibration) {
-        // ignore for now
-    }
-
-    @Override
-    public void onDrawFrame(Canvas canvas, int onscreenWidth, int onscreenHeight, float scaleBmpPxToCanvasPx, float scaleCanvasDensity, Object userContext) {
-        // ignore for now
-    }
-    /* DIFFERENCE END */
 
 }

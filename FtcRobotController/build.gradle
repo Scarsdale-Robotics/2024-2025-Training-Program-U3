@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat
 //
 apply plugin: 'com.android.library'
 
+repositories {
+    mavenCentral()
+}
+
 android {
 
     defaultConfig {
@@ -21,6 +25,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace = 'com.qualcomm.ftcrobotcontroller'
+
 }
 
 apply from: '../build.dependencies.gradle'
