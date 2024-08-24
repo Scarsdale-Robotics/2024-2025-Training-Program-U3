@@ -19,6 +19,7 @@ public class CVSubsystem {
     public CVSubsystem(WebcamName cameraName) {
         VisionPortal visionPortal = buildVisionPortal(cameraName);
 
+        // we update exposure just to reduce motion blur (for our cameras, decreasing exposure decreases shutter speed)
         updateExposure(visionPortal);
     }
 
