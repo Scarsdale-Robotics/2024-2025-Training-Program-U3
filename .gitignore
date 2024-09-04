@@ -80,3 +80,6 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 /TeamCode/src/main/java/org/firstinspires/ftc/teamcode/eocvsim_workspace.json
+/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/opmodes/autons/RLGLSolution.java
+/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/cvpipelines/testing/RLGLPipeline.java
+/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/cvpipelines/processors/RLGLProcessor.java

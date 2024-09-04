@@ -66,19 +66,21 @@ public class PipelineThatSharesInformationAsVisionProcessor /* DIFFERENCE START 
         // Imgproc.CHAIN_APPROX_SIMPLE: tells OpenCV to return approximate contours to save memory
         Imgproc.findContours(result, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
+        // convert to RGB so we can draw with colors
+        Imgproc.cvtColor(result, result, Imgproc.COLOR_GRAY2RGB);
+
 
         // addition: since we want to share the center of the bounding box of the largest contour,
         //           we will store this center point when processing this frame.
         MatOfPoint largestContour = getLargestContour();
+        if (largestContour == null) return result;
+
         Rect largestContourBoundingBox = Imgproc.boundingRect(largestContour.t());
         largestContourBoundingBoxCenter = new Point(
                 largestContourBoundingBox.x + largestContourBoundingBox.width / 2.0,
                 largestContourBoundingBox.y + largestContourBoundingBox.height / 2.0
         );
 
-
-        // convert to RGB so we can draw with colors
-        Imgproc.cvtColor(result, result, Imgproc.COLOR_GRAY2RGB);
 
         // result: the image to draw on
         // contours: the contours to draw

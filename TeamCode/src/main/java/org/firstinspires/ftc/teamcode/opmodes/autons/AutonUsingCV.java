@@ -1,17 +1,19 @@
 package org.firstinspires.ftc.teamcode.opmodes.autons;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.RobotSystem;
 import org.firstinspires.ftc.teamcode.subsystems.CVSubsystem;
 
+@Autonomous(name = "Orange Pixel Count Logger")
 public class AutonUsingCV extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         // RobotSystem packages our subsystems
-        RobotSystem robot = new RobotSystem(hardwareMap);
+        RobotSystem robot = new RobotSystem(hardwareMap, this);
 
         CVSubsystem cv = robot.CV;
 

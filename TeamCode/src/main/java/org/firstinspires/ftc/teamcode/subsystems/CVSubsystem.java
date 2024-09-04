@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import android.util.Size;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.ExposureControl;
 import org.firstinspires.ftc.teamcode.cvpipelines.processors.PipelineThatSharesInformationAsVisionProcessor;
@@ -16,8 +18,10 @@ public class CVSubsystem {
     private PipelineThatSharesInformationAsVisionProcessor processor1;
 
 
-    public CVSubsystem(WebcamName cameraName) {
+    public CVSubsystem(WebcamName cameraName, LinearOpMode opMode) {
         VisionPortal visionPortal = buildVisionPortal(cameraName);
+
+        while ((opMode.opModeInInit() || opMode.opModeIsActive()) && visionPortal.getCameraState() != VisionPortal.CameraState.STREAMING);
 
         // we update exposure just to reduce motion blur (for our cameras, decreasing exposure decreases shutter speed)
         updateExposure(visionPortal);
